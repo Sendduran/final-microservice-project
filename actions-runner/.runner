@@ -1,9 +1,0 @@
-﻿{
-  "agentId": 2,
-  "agentName": "SENDDURAN",
-  "poolId": 1,
-  "poolName": "Default",
-  "serverUrl": "https://pipelinesghubeus15.actions.githubusercontent.com/rrF9ugIv0J4c1jifzav7E0TXPAoPwIydIAsTLuG2ukAnGkZDlu/",
-  "gitHubUrl": "https://github.com/Sendduran/final-microservice-project",
-  "workFolder": "_work"
-}
