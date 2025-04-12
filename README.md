@@ -130,7 +130,7 @@ Runner: self-hosted GitHub Actions runner (local)
 
 ## 🙌 Team & Credits
 
-Built by: Sendduran Thailan  
+Built by: Sendduran Thailan, Krutika Latkar, Anil Pokhrel , Roma Malla Thakuri  
 Course: SOA – Final Project (Seneca College)
 
 ---
