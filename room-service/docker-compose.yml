@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  room-service:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=yourpassword
+      - DB_NAME=room_db
+      - DB_HOST=postgres
+      - DB_PORT=5432
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=yourpassword
+      - POSTGRES_DB=room_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - roomdata:/var/lib/postgresql/data
+
+volumes:
+  roomdata:

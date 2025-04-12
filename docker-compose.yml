@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  student-service:
+    build:
+      context: ./student-service
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=yourpassword
+      - DB_NAME=student_db
+      - DB_HOST=student-db
+      - DB_PORT=5432
+    depends_on:
+      - student-db
+
+  student-db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=yourpassword
+      - POSTGRES_DB=student_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - studentdata:/var/lib/postgresql/data
+
+  room-service:
+    build:
+      context: ./room-service
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=yourpassword
+      - DB_NAME=room_db
+      - DB_HOST=room-db
+      - DB_PORT=5432
+    depends_on:
+      - room-db
+      - student-service
+
+  room-db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=yourpassword
+      - POSTGRES_DB=room_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - roomdata:/var/lib/postgresql/data
+
+volumes:
+  studentdata:
+  roomdata:

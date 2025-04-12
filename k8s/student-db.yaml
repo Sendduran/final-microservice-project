@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: student-postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: student-postgres
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: student-postgres
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: student-postgres
+  template:
+    metadata:
+      labels:
+        app: student-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:14
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: students
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: student-postgres-storage
+      volumes:
+        - name: student-postgres-storage
+          persistentVolumeClaim:
+            claimName: student-postgres-pvc
