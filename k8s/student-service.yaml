@@ -43,7 +43,7 @@ spec:
             - name: DB_USER
               value: postgres
             - name: DB_PASSWORD
-              value: yourpassword
+              value: postgres
             - name: DB_NAME
               value: students
           resources:

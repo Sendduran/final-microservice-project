@@ -40,7 +40,7 @@ spec:
             - name: POSTGRES_USER
               value: postgres
             - name: POSTGRES_PASSWORD
-              value: yourpassword
+              value: postgres
             - name: POSTGRES_DB
               value: students
           ports:
