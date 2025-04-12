@@ -1,13 +1,13 @@
-name: 🚀 Local CI/CD Pipeline
+name: 🚀 Local CI/CD Pipeline (Docker + K8s)
 
 on:
   push:
     branches:
-      - main  # or replace with your actual branch name
+      - main # or your main branch name
 
 jobs:
   build-test-deploy:
-    runs-on: self-hosted  # this tells it to use your local runner
+    runs-on: self-hosted
 
     steps:
       - name: 📥 Checkout Code
@@ -53,7 +53,7 @@ jobs:
       # - name: 📤 Push room-service to Docker Hub
       #   run: docker push room-service:latest
 
-      # Deploy to Kubernetes
+      # Apply Kubernetes Manifests
       - name: ☸️ Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/
